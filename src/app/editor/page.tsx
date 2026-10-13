@@ -89,13 +89,13 @@ export default function EditorPage() {
                             {images.map(({ url }, index) => (
                             <div 
                                 key={url} 
-                                className="relative w-24 h-24 border border-gray-300 rounded-lg overflow-hidden group bg-gray-50"
+                                className="relative h-24 w-40 shrink-0 border border-gray-300 rounded-lg overflow-hidden group bg-gray-50"
                             >
                                 <Image
                                 src={url} 
                                 alt={`Preview ${index + 1}`} 
                                 className="w-full h-full object-cover" 
-                                width={96}
+                                width={160}
                                 height={96}
                                 />
                                 <button
@@ -109,7 +109,7 @@ export default function EditorPage() {
                         ))}
 
                         {images.length < MAX_IMAGES && (
-                        <label className="w-24 h-24 flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-blue-500 hover:bg-gray-50 transition-colors">
+                        <label className="h-24 w-40 shrink-0 flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-blue-500 hover:bg-gray-900 transition-colors">
                             <svg 
                             fill="none" 
                             viewBox="0 0 24 24" 
