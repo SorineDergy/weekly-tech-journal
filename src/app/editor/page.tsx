@@ -1,6 +1,6 @@
 'use client';
 
-// import Image from 'next/image'; // gonna fix this later(probably * ahem *), gonna use the default img tag for now
+import Image from 'next/image'; // gonna fix this later(probably * ahem *), gonna use the default img tag for now
 import React, { useState, ChangeEvent } from 'react';
 import { MdEditor } from 'md-editor-rt';
 import 'md-editor-rt/lib/style.css'; 
@@ -91,10 +91,12 @@ export default function EditorPage() {
                                 key={url} 
                                 className="relative w-24 h-24 border border-gray-300 rounded-lg overflow-hidden group bg-gray-50"
                             >
-                                <img 
+                                <Image
                                 src={url} 
                                 alt={`Preview ${index + 1}`} 
                                 className="w-full h-full object-cover" 
+                                width={96}
+                                height={96}
                                 />
                                 <button
                                 type="button"
