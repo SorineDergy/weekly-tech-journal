@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
-type ErrorCode = "VALIDATION_ERROR" | "NOT_FOUND" | "INTERNAL_ERROR";
+type ErrorCode = "VALIDATION_ERROR" | "NOT_FOUND" | "UNAUTHORIZED" | "INTERNAL_ERROR";
 
 export function ok(data: unknown, status = 200, meta?: Record<string, unknown>) {
   return NextResponse.json(meta ? { data, meta } : { data }, { status });

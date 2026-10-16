@@ -3,6 +3,7 @@ import { db } from "@/db";
 import { entries } from "@/db/schema";
 import { idSchema, updateEntrySchema } from "@/lib/validation";
 import { fail, ok, serverError, validationError } from "@/lib/api";
+import { requireWriteToken } from "@/lib/auth";
 
 type Ctx = { params: Promise<{ id: string }> };
 
@@ -22,6 +23,8 @@ export async function GET(_req: Request, { params }: Ctx) {
 
 export async function PATCH(req: Request, { params }: Ctx) {
   try {
+    const denied = requireWriteToken(req);
+    if (denied) return denied;
     const id = idSchema.safeParse((await params).id);
     if (!id.success) return validationError(id.error);
 
@@ -48,8 +51,10 @@ export async function PATCH(req: Request, { params }: Ctx) {
   }
 }
 
-export async function DELETE(_req: Request, { params }: Ctx) {
+export async function DELETE(req: Request, { params }: Ctx) {
   try {
+    const denied = requireWriteToken(req);
+    if (denied) return denied;
     const id = idSchema.safeParse((await params).id);
     if (!id.success) return validationError(id.error);
 
