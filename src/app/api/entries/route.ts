@@ -3,6 +3,7 @@ import { db } from "@/db";
 import { entries } from "@/db/schema";
 import { createEntrySchema, listQuerySchema } from "@/lib/validation";
 import { fail, ok, serverError, validationError } from "@/lib/api";
+import { requireWriteToken } from "@/lib/auth";
 
 export async function GET(req: Request) {
   try {
@@ -26,6 +27,8 @@ export async function GET(req: Request) {
 
 export async function POST(req: Request) {
   try {
+    const denied = requireWriteToken(req);
+    if (denied) return denied;
     let body: unknown;
     try {
       body = await req.json();
