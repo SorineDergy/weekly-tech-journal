@@ -132,7 +132,7 @@ export default function EditorPage() {
                     </div>
                             <div className="flex w-full flex-col gap-4 p-2 bg-white dark:bg-black">
                     <button 
-                    type="submit"
+                    type="button"
                     className="bg-gray-800 text-white font-medium py-2 px-4 rounded hover:bg-green-900 transition"
                     >
                     Preview Article
