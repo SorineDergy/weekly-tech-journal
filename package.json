@@ -13,12 +13,9 @@
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.2.0",
-    "@next/swc-android-arm64": "^13.2.4",
     "@uiw/react-md-editor": "^4.1.2",
     "@vercel/blob": "^2.8.0",
     "drizzle-orm": "^0.45.3",
-    "lightningcss-android-arm64": "^1.33.0",
-    "markdown-it": "^15.0.2",
     "next": "16.3.8",
     "react": "19.2.8",
     "react-dom": "19.2.8",
@@ -28,7 +25,6 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
-    "@types/markdown-it": "^14.2.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
