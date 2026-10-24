@@ -14,7 +14,7 @@ export default function EditorPage() {
     const [markdownValue, setMarkdownValue] = useState<string | undefined>('');
     const [images, setImages] = useState<{ file: File; url: string }[]>([]);
     const MAX_IMAGES = 5;
-    const API_WRITE_TOKEN = process.env.API_WRITE_TOKEN
+    const API_WRITE_TOKEN = process.env.API_WRITE_TOKEN;
 
     const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
         if (!e.target.files) return;
