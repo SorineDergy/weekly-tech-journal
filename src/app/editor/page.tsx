@@ -14,6 +14,7 @@ export default function EditorPage() {
     const [markdownValue, setMarkdownValue] = useState<string | undefined>('');
     const [images, setImages] = useState<{ file: File; url: string }[]>([]);
     const MAX_IMAGES = 5;
+    const API_WRITE_TOKEN = process.env.API_WRITE_TOKEN
 
     const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
         if (!e.target.files) return;
@@ -50,6 +51,30 @@ export default function EditorPage() {
         const submittedImages = formData.getAll('images');
 
         console.log('Submitting data:', { title, content, images: submittedImages });
+        try{
+          const response = await fetch('https://weekly-tech-journal.vercel.app/api/entries', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${API_WRITE_TOKEN}`,
+            },
+            body: JSON.stringify({
+              "title": title,
+              "content": content,
+            }),
+          });
+          const data = await response.json();
+          if (response.status === 201){
+            alert("Article uploaded sucessfully");
+          }else if (response.status === 401){
+            alert("Invalid Token");
+          }else {
+            alert("Unknown error");
+          }
+        }catch{ 
+          
+        };
+        
     };
 
     return (
@@ -70,7 +95,6 @@ export default function EditorPage() {
                         />
                     </div>
 
-                    {/* 4. Swapped MdEditor with correctly imported dynamic MDEditor */}
                     <div className="w-full">
                         <label className="block text-sm font-bold mb-2">Body:</label>
                         <div data-color-mode="light" className="w-full text-black">
